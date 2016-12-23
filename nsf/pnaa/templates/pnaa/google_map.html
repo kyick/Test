@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+    <title>Demo</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="{% static 'pnaa/js/pnaa.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'pnaa/css/pnaa.css' %}">
+
+</head>
+<body>
+    <div class="container">
+    <h2>ARDA Car Scenario</h2>
+    <h3 id="routeName"></h3>
+        <div class="btn-group">
+                    <button type="button" class="btn btn-primary bdropdown-toggle" data-toggle="dropdown">
+                      Car Routes <span class="caret"></span></button>
+                    <ul class="dropdown-menu" role="menu">
+                        {% for route in routes %}
+                            <li onclick="showMap('{{ route.title }}')"><a href="#">{{ route }}</a></li>
+                        {% endfor %}
+                    </ul>
+            </div>
+            <div class="btn-group">
+            <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+              Cell Congestion Level <span class="caret"></span></button>
+            <ul class="dropdown-menu" role="menu">
+                {% for cell in cells %}
+                    <li onclick="showGraph('{{ cell.cellid }}')"><a href="#">{{ cell }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div>&nbsp</div>
+    <div id="route" class="myMap">
+    </div>
+</body>
+</html>
+
